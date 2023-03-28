@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', ['user' => \Auth::user()]);
     })->name('dashboard');
+
+    Route::prefix('/videos')->group(function() {
+        Route::get('/', [VideoController::class, 'index'])->name('video.index');
+    });
 });
