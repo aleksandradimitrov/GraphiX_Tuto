@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import Image from 'primevue/image';
 
 defineProps({
     videos: Object
@@ -17,7 +18,11 @@ defineProps({
     <div class="center-screen grid-container">
       <div v-for="video in videos" class="grid-item card w-96 bg-base-100 shadow-xl">
   <figure>
-    <img src="https://picsum.photos/600/200" alt="Thumbnail" />
+    <!-- <img src="https://picsum.photos/600/200" alt="Thumbnail" />
+     -->
+     
+        <Image :src="video.thumbnail_photo_path" alt="Image" width="250" preview />
+
 </figure>
   <div class="card-body">
     <h2 class="card-title">{{ video.title }}</h2>
@@ -31,8 +36,14 @@ defineProps({
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
 </div>
-<div class="card-actions justify-end">
-      <button class="btn btn-primary mt-5">Watch Now</button>
+<div class=" justify-end">
+  <a :href="video.url">
+  
+      <button class="btn btn-primary mt-5">
+           Watch Now
+        </button>
+      </a>
+
     </div>
       </div>
     </div>
@@ -42,14 +53,17 @@ defineProps({
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(56px, 80px));
+  /* grid-template-columns: repeat(4, minmax(56px, 80px)); */
   grid-gap: 50px;
-  position: fixed;
-  /* bottom: 0;
-  left: 0; */
+  /* position: fixed; */
   width: 100%;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
   justify-content: space-between;
+  grid-template-columns: auto auto auto;
+  background-color: #070a34;
+  padding: 10px;
+  flex-wrap: wrap;
+    gap: 1rem;
 }
 .center-screen {
   display: flex;
@@ -61,6 +75,10 @@ defineProps({
   margin-right: -50%;
 }
 .grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;

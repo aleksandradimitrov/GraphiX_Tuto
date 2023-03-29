@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->string('description');
-            $table->string('title');
-            $table->string('thumbnail_photo_path')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->boolean('public');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('categories');
     }
 };

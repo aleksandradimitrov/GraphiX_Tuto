@@ -25,6 +25,9 @@
         "@vitejs/plugin-vue": "^4.1.0",
         "@vue/compiler-sfc": "^3.2.47",
         "daisyui": "^2.51.5",
+        "primeflex": "^3.3.0",
+        "primeicons": "^6.0.1",
+        "primevue": "^3.26.1",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1"
     }

@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,5 @@ Route::middleware([
     Route::prefix('/videos')->group(function() {
         Route::get('/', [VideoController::class, 'index'])->name('video.index');
     });
+    Route::get('/about', [AboutUsController::class, 'index'])->name('about');
 });
