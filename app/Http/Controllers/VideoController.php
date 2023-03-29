@@ -10,6 +10,7 @@ class VideoController extends Controller
 {
     public function index(){
         $videos = Video::all();
+
         return Inertia::render('Videos', ['videos' => $videos]);
     }
 }

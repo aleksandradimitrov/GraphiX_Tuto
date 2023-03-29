@@ -24,6 +24,7 @@
         "@inertiajs/vue3": "^1.0.2",
         "@vitejs/plugin-vue": "^4.1.0",
         "@vue/compiler-sfc": "^3.2.47",
+        "daisyui": "^2.51.5",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1"
     }
