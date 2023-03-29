@@ -15,7 +15,7 @@ class Video extends Model
         'title',
         'description',
         'public',
-        'thumbnail_photo_path'
+        'thumbnail_photo_path',
         'category_id'
     ];
 
