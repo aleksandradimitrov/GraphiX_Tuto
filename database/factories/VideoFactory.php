@@ -18,6 +18,10 @@ class VideoFactory extends Factory
     {
         return [
             'url' => fake()->word(),
+            'title' => fake()->word(),
+            'description' => fake()->word(),
+            'public' => true,
+            'thumbnail_photo_path' => 'https://picsum.photos/id/237/200/300'
         ];
     }
 }
