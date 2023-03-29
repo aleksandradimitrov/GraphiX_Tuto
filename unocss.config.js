@@ -6,7 +6,7 @@ import { presetForms } from '@julr/unocss-preset-forms'
 
 export default defineConfig({
     presets: [
-        presetForms(),
+        // presetForms(),
         presetUno(),
         presetAttributify(),
         presetIcons({
