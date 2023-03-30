@@ -1,53 +1,50 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import Image from 'primevue/image';
+import Image from 'primevue/image'
+import AppLayout from '@/Layouts/AppLayout.vue'
 
 defineProps({
-    videos: Object
-});
+  videos: Object,
+})
 </script>
 
 <template>
-
-    <!-- <Head title="GrapicX Tutorials" /> -->
-    <AppLayout title="Tutorials">
+  <!-- <Head title="GrapicX Tutorials" /> -->
+  <AppLayout title="Tutorials">
     <!-- <div>
         {{ videos }}
     </div> -->
     <div class="center-screen grid-container">
       <div v-for="video in videos" class="grid-item card w-96 bg-base-100 shadow-xl">
-  <figure>
-    <!-- <img src="https://picsum.photos/600/200" alt="Thumbnail" />
+        <figure>
+          <!-- <img src="https://picsum.photos/600/200" alt="Thumbnail" />
      -->
-     
-        <Image :src="video.thumbnail_photo_path" alt="Image" width="250" preview />
 
-</figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ video.title }}</h2>
-    <p>{{ video.description }}</p>
-    
-  </div>
-  <div class="rating">
-  <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-  <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked />
-  <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-  <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-  <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-</div>
-<div class=" justify-end">
-  <a :href="video.url">
-  
-      <button class="btn btn-primary mt-5">
-           Watch Now
-        </button>
-      </a>
+          <Image :src="video.thumbnail_photo_path" alt="Image" width="250" preview />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">
+            {{ video.title }}
+          </h2>
+          <p>{{ video.description }}</p>
+        </div>
+        <div class="rating">
+          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500">
+          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked>
+          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500">
+          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500">
+          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500">
+        </div>
+        <div class=" justify-end">
+          <a :href="video.url">
 
-    </div>
+            <button class="btn btn-primary mt-5">
+              Watch Now
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-</AppLayout>
+  </AppLayout>
 </template>
 
 <style>
