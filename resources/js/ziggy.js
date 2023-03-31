@@ -61,14 +61,14 @@ const Ziggy = {
     'ignition.updateConfig': {
       uri: '_ignition\/update-config', methods: ['POST'],
     },
-    'dashboard': {
-      uri: 'dashboard', methods: ['GET', 'HEAD'],
-    },
     'video.index': {
       uri: 'videos', methods: ['GET', 'HEAD'],
     },
     'about': {
       uri: 'about', methods: ['GET', 'HEAD'],
+    },
+    'forum': {
+      uri: 'forum', methods: ['GET', 'HEAD'],
     },
   },
 }

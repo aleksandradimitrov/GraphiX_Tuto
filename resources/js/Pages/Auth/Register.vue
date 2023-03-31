@@ -1,13 +1,11 @@
-<script setup>
+<script lang="ts">
 import { Head, Link, useForm } from '@inertiajs/vue3'
-import AuthenticationCard from '@/Components/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
-import Checkbox from '@/Components/Checkbox.vue'
-import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
-import TextInput from '@/Components/TextInput.vue'
+export default {
+  layout: (h, page) => h(page),
+}
+</script>
 
+<script setup lang="ts">
 const form = useForm({
   name: '',
   email: '',
@@ -31,7 +29,7 @@ function submit() {
       <AuthenticationCardLogo />
     </template>
 
-    <form @submit.prevent="submit">
+    <form text-black @submit.prevent="submit">
       <div>
         <InputLabel for="name" value="Name" />
         <TextInput
