@@ -2,18 +2,26 @@ import '@unocss/reset/tailwind-compat.css'
 import 'uno.css'
 import './bootstrap'
 
+import type { DefineComponent } from 'vue'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
+import { Ziggy } from './ziggy.js'
+
+import AppLayout from './Layouts/AppLayout.vue'
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel'
 
 createInertiaApp({
   title: title => `${title} - ${appName}`,
-  resolve: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+  resolve: async (name) => {
+    const pages = import.meta.glob<DefineComponent>('./Pages/**/*.vue')
+    const page = await pages[`./Pages/${name}.vue`]()
+    page.default.layout ??= AppLayout
+    return page
+  },
   setup({ el, App, props, plugin }) {
-    return createApp({ render: () => h(App, props) })
+    createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(ZiggyVue, Ziggy)
       .mount(el)

@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": {
+          "multiline": false,
+          "minProperties": 3
+        }
+      }
+    ]
+  }
+}
