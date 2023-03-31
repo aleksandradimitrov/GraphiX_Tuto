@@ -1,0 +1,13 @@
+{
+  "editor.fontSize": 13.8,
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.quiet": true,
+  "volar.codeLens.scriptSetupTools": true,
+  "volar.completion.preferredTagNameCase": "pascal",
+  "volar.showWelcomePage": false,
+  "volar.takeOverMode.enabled": "auto",
+}
