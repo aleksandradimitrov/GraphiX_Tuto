@@ -1,10 +1,11 @@
-<script setup>
-import { computed } from 'vue'
+<script lang="ts">
 import { Head, Link, useForm } from '@inertiajs/vue3'
-import AuthenticationCard from '@/Components/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
+export default {
+  layout: (h, page) => h(page),
+}
+</script>
 
+<script setup lang="ts">
 const props = defineProps({
   status: String,
 })
@@ -34,7 +35,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
       A new verification link has been sent to the email address you provided in your profile settings.
     </div>
 
-    <form @submit.prevent="submit">
+    <form text-black @submit.prevent="submit">
       <div class="mt-4 flex items-center justify-between">
         <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
           Resend Verification Email

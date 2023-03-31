@@ -1,13 +1,11 @@
-<script setup>
-import { nextTick, ref } from 'vue'
+<script lang="ts">
 import { Head, useForm } from '@inertiajs/vue3'
-import AuthenticationCard from '@/Components/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
-import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
-import TextInput from '@/Components/TextInput.vue'
+export default {
+  layout: (h, page) => h(page),
+}
+</script>
 
+<script setup lang="ts">
 const recovery = ref(false)
 
 const form = useForm({
@@ -56,7 +54,7 @@ function submit() {
       </template>
     </div>
 
-    <form @submit.prevent="submit">
+    <form text-black @submit.prevent="submit">
       <div v-if="!recovery">
         <InputLabel for="code" value="Code" />
         <TextInput

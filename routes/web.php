@@ -18,11 +18,8 @@ use App\Http\Controllers\AboutUsController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+    return Inertia::render('Dashboard', [
+
     ]);
 });
 
@@ -31,12 +28,16 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard', ['user' => \Auth::user()]);
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Dashboard', ['user' => \Auth::user()]);
+    // })->name('dashboard');
 
     Route::prefix('/videos')->group(function() {
         Route::get('/', [VideoController::class, 'index'])->name('video.index');
     });
     Route::get('/about', [AboutUsController::class, 'index'])->name('about');
+
+    Route::get('/forum', function () {
+        return Inertia::render('Forum');
+    })->name('forum');
 });

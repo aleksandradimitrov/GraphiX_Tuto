@@ -1,6 +1,7 @@
 import '@unocss/reset/tailwind-compat.css'
 import 'uno.css'
 import './bootstrap'
+import '../css/app.css'
 
 import type { DefineComponent } from 'vue'
 import { createApp, h } from 'vue'

@@ -1,25 +1,23 @@
-<script setup>
-import { ref } from 'vue'
+<script lang="ts">
 import { Head, useForm } from '@inertiajs/vue3'
-import AuthenticationCard from '@/Components/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
-import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
-import TextInput from '@/Components/TextInput.vue'
+export default {
+  layout: (h, page) => h(page),
+}
+</script>
 
+<script setup lang="ts">
 const form = useForm({
   password: '',
 })
 
-const passwordInput = ref(null)
+const passwordInput = ref<HTMLInputElement | null>(null)
 
 function submit() {
   form.post(route('password.confirm'), {
     onFinish: () => {
       form.reset()
 
-      passwordInput.value.focus()
+      passwordInput.value?.focus()
     },
   })
 }
@@ -37,7 +35,7 @@ function submit() {
       This is a secure area of the application. Please confirm your password before continuing.
     </div>
 
-    <form @submit.prevent="submit">
+    <form text-black @submit.prevent="submit">
       <div>
         <InputLabel for="password" value="Password" />
         <TextInput
