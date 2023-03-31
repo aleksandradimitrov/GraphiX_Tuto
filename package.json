@@ -13,6 +13,7 @@
     "@unocss/reset": "^0.50.6",
     "@vitejs/plugin-vue": "^4.1.0",
     "@vue/compiler-sfc": "^3.2.47",
+    "@vueuse/core": "^9.13.0",
     "daisyui": "^2.51.5",
     "eslint": "^8.37.0",
     "primeflex": "^3.3.0",
@@ -34,6 +35,8 @@
     "lodash": "^4.17.19",
     "typescript": "^5.0.2",
     "unocss": "^0.50.6",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-vue-components": "^0.24.1",
     "vite": "^4.2.1",
     "vue": "^3.2.31",
     "ziggy-js": "^1.5.0"
