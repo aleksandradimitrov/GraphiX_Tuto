@@ -9,8 +9,35 @@ use Inertia\Inertia;
 class VideoController extends Controller
 {
     public function index(){
-        $videos = Video::all();
-
-        return Inertia::render('Videos', ['videos' => $videos]);
+        $videos = Video::with('ratings')->get();
+        $getVideos = [];
+        foreach($videos as $video){
+          $getVideos[] = $video->toArray();
+        }
+        
+        return Inertia::render('Videos', ['videos' => $getVideos]);
     }
+    public function show(Video $video){
+        $ratings = [];
+        foreach($video->ratings()->latest()->get() as $rating){
+            $r = $rating;
+            $r['user']= $rating->user;
+            $ratings[] = $r->toArray();
+        }
+        return Inertia::render('VideosShow', [
+            'video' => $video,
+            'ratings' => $ratings]);
+        }
+
+    public function store()
+    {
+        \App\Models\Rate::factory()->create([
+            'user_id' =>\Auth::user()->id,
+            'video_id' =>request('video_id'),
+            'rating' => request('rating'), 
+            'comment' =>request('comment')  
+        ]);
+        return redirect()->back();
+
+    }    
 }

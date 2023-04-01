@@ -64,6 +64,13 @@ const Ziggy = {
     'video.index': {
       uri: 'videos', methods: ['GET', 'HEAD'],
     },
+    'video.show': {
+      uri: 'videos\/{video}',
+      methods: ['GET', 'HEAD'],
+      bindings: {
+        video: 'id',
+      },
+    },
     'about': {
       uri: 'about', methods: ['GET', 'HEAD'],
     },

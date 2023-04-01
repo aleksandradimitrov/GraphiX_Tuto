@@ -11,6 +11,8 @@ class Rate extends Model
     use HasFactory;
 
     protected $fillable = [
+        'rating',
+        'comment',
         'user_id',
         'video_id'
     ];

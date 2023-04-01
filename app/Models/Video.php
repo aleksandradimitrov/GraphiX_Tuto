@@ -19,6 +19,21 @@ class Video extends Model
         'category_id'
     ];
 
+    protected $appends = [
+        'averageRate'
+    ];
+
+
+    public function getAverageRateAttribute()
+    {
+        $sum = 0;
+        foreach($this->ratings as $rating){
+            $sum = $sum + $rating->rating;
+        }
+        $average = $sum/count($this->ratings);
+        return (int) round($average, 0);
+
+    }
     public function ratings()
     {
         return $this->hasMany(Rate::class);

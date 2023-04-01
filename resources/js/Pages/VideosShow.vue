@@ -1,10 +1,32 @@
 <script setup lang="ts">
-import Image from 'primevue/image'
 import StarRating from 'vue-star-rating'
-
-defineProps<{
-  videos: any[]
+const props = defineProps<{
+  video: any
+  ratings: any[]
 }>()
+const form = useForm({
+  comment: '',
+  rating: 1,
+
+})
+
+function postComment() {
+  form.transform(
+    data => ({
+      ...data,
+      video_id: props.video.id,
+    }),
+  )
+    .post(route('video-review.store'), {
+      errorBag: 'addReview',
+      preserveScroll: true,
+      onSuccess: () => form.reset(),
+      onError: () => {
+        if (form.errors.comment)
+          form.reset('comment')
+      },
+    })
+}
 </script>
 
 <template>
@@ -14,35 +36,29 @@ defineProps<{
         {{ videos }}
     </div> -->
   <div class="center-screen grid-container">
-    <div v-for="video in videos" :key="video.title" class="grid-item bg-indigo-6 card w-96 bg-base-100 shadow-xl">
-      <figure>
-        <!-- <img src="https://picsum.photos/600/200" alt="Thumbnail" />
-     -->
+    <figure>
+      <!-- <img src="https://picsum.photos/600/200" alt="Thumbnail" /> -->
 
-        <Image :src="video.thumbnail_photo_path" alt="Image" width="250" preview />
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title">
-          {{ video.title }}
-        </h2>
-        <p>{{ video.description }}</p>
-      </div>
-      <StarRating v-model:rating="video.averageRate" :star-size="25" active-color="#ffdb19" read-only="true" />
+      <!-- {{ video }} -->
+      <Image :src="video.thumbnail_photo_path" alt="Image" width="50" preview />
+    </figure>
+    <div class="grid-item bg-indigo-6 card w-180 bg-base-100 shadow-xl">
+      <!-- <textarea v-model="form.comment" placeholder="Bio" style="color:black;" class="textarea textarea-bordered textarea-xs w-full max-w-xs" /> -->
+      <input v-model="form.comment" placeholder="Comment" mb-5 style="color:black;width:650px;" width="500" class="comment">
 
+      <StarRating v-model:rating="form.rating" :star-size="25" active-color="#ffdb19" />
       <div class=" justify-end">
-        <a :href="video.url">
-
-          <button class="btn btn-primary mt-5">
-            Watch Now
-          </button>
-        </a>
+        <button class="btn btn-primary mt-5" @click="postComment">
+          Publish your review
+        </button>
       </div>
-      <div class="float ">
-        <a :href="route('video.show', [video.id], false)">
-          <button class="btn btn-primary mt-5">
-            Show reviews
-          </button>
-        </a>
+    </div>
+
+    <div v-for="rating in ratings" :key="rating.id" class="grid-item bg-indigo-6 card w-180 bg-base-100 shadow-xl">
+      <StarRating v-model:rating="rating.rating" :star-size="25" active-color="#ffdb19" read-only="true" />
+      <div>
+        <strong>{{ rating.user.name }}</strong> said:
+        {{ rating.comment }}
       </div>
     </div>
   </div>
@@ -61,7 +77,16 @@ defineProps<{
   padding: 10px;
   flex-wrap: wrap;
     gap: 1rem;
+
 }
+.comment {
+        width: 40%;
+        height: 100px;
+        padding: 10px;
+        background-color: #ffffff;
+        border-style: solid;
+      border-width: 1px;
+      }
 .center-screen {
   display: flex;
   justify-content: center;

@@ -34,6 +34,8 @@ Route::middleware([
 
     Route::prefix('/videos')->group(function() {
         Route::get('/', [VideoController::class, 'index'])->name('video.index');
+        Route::get('/{video}', [VideoController::class, 'show'])->name('video.show');
+        Route::post('/review', [VideoController::class, 'store'])->name('video-review.store');
     });
     Route::get('/about', [AboutUsController::class, 'index'])->name('about');
 
