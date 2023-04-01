@@ -28,9 +28,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return Inertia::render('Dashboard', ['user' => \Auth::user()]);
-    // })->name('dashboard');
 
     Route::prefix('/videos')->group(function() {
         Route::get('/', [VideoController::class, 'index'])->name('video.index');

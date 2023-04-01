@@ -17,7 +17,6 @@
   "require-dev": {
     "fakerphp/faker": "^1.9.1",
     "laravel/pint": "^1.0",
-    "laravel/sail": "^1.0.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
     "phpunit/phpunit": "^9.5.10",
@@ -31,6 +30,12 @@
     }
   },
   "autoload-dev": {
+    "classmap": [
+      "app/http/controllers",
+      "app/models",
+      "database/migrations",
+      "database/seeders"
+  ],
     "psr-4": {
       "Tests\\": "tests/"
     }
@@ -38,7 +43,8 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+      "@php artisan package:discover --ansi",
+      "@php artisan ide-helper:generate"
     ],
     "post-update-cmd": [
       "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -52,7 +58,9 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": []
+      "dont-discover": [
+        "barryvdh/laravel-ide-helper"
+      ]
     }
   },
   "config": {

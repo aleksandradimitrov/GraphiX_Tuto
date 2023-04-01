@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import StarRating from 'vue-star-rating'
+import InputError from '@/Components/InputError.vue'
 const props = defineProps<{
   video: any
   ratings: any[]
 }>()
 const form = useForm({
   comment: '',
-  rating: 1,
+  rating: 0,
 
 })
 
@@ -45,8 +46,10 @@ function postComment() {
     <div class="grid-item bg-indigo-6 card w-180 bg-base-100 shadow-xl">
       <!-- <textarea v-model="form.comment" placeholder="Bio" style="color:black;" class="textarea textarea-bordered textarea-xs w-full max-w-xs" /> -->
       <input v-model="form.comment" placeholder="Comment" mb-5 style="color:black;width:650px;" width="500" class="comment">
+      <InputError class="mt-2" :message="form.errors.comment" />
 
       <StarRating v-model:rating="form.rating" :star-size="25" active-color="#ffdb19" />
+      <InputError class="mt-2" :message="form.errors.rating" />
       <div class=" justify-end">
         <button class="btn btn-primary mt-5" @click="postComment">
           Publish your review

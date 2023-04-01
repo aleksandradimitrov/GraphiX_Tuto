@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Video;
 use Inertia\Inertia;
+use App\Http\Requests\ReviewVideoRequest;
 
 class VideoController extends Controller
 {
     public function index(){
+
         $videos = Video::with('ratings')->get();
         $getVideos = [];
         foreach($videos as $video){
@@ -29,7 +31,7 @@ class VideoController extends Controller
             'ratings' => $ratings]);
         }
 
-    public function store()
+    public function store(ReviewVideoRequest $request)
     {
         \App\Models\Rate::factory()->create([
             'user_id' =>\Auth::user()->id,
