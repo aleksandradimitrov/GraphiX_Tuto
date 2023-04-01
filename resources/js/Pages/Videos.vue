@@ -33,7 +33,7 @@ defineProps<{
         <a :href="video.url">
 
           <button class="btn btn-primary mt-5">
-            Watch Now
+            Watch On YouTube
           </button>
         </a>
       </div>
